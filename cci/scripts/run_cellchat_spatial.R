@@ -1,0 +1,13 @@
+suppressPackageStartupMessages(library(CellChat));suppressPackageStartupMessages(library(Matrix));suppressPackageStartupMessages(library(future));plan('sequential')
+args<-commandArgs(trailingOnly=TRUE);out<-args[1];if(dir.exists(out))stop('Output exists');dir.create(out,recursive=TRUE)
+t<-proc.time()[3]
+x<-readMM('data/spatial_baseline_inputs/expression.mtx');rownames(x)<-readLines('data/spatial_baseline_inputs/genes.txt')
+m<-read.delim('data/spatial_baseline_inputs/metadata.tsv',row.names=1,check.names=FALSE);colnames(x)<-rownames(m);m$samples<-factor(m$sample);m$celltype<-factor(m$celltype)
+coord<-as.matrix(m[,c('x_um','y_um')])
+obj<-createCellChat(x,meta=m,group.by='celltype',datatype='spatial',coordinates=coord,spatial.factors=data.frame(ratio=1,tol=27.5))
+obj@DB<-subsetDB(CellChatDB.mouse,search=c('Secreted Signaling','Cell-Cell Contact'),key='annotation');obj<-subsetData(obj)
+obj<-identifyOverExpressedInteractions(obj,features=rownames(obj@data.signaling))
+obj<-computeCommunProb(obj,type='truncatedMean',trim=0,nboot=20,seed.use=20260928,distance.use=TRUE,interaction.range=250,scale.distance=.01,contact.dependent=TRUE,contact.range=110)
+saveRDS(obj@net,file.path(out,'net.rds'))
+z<-as.data.frame(as.table(obj@net$prob),stringsAsFactors=FALSE);names(z)<-c('sender','receiver','interaction','score');write.table(z,file.path(out,'scores.tsv'),sep='\t',row.names=FALSE,quote=FALSE)
+jsonlite::write_json(list(status='DONE',method='Spatial CellChat',CellChat_version=as.character(packageVersion('CellChat')),nboot=20,seconds=proc.time()[3]-t,spots=ncol(x),sample_units=1,notes='20 bootstrap profiling only; native specificity p values not used for condition-level error claims'),file.path(out,'receipt.json'),auto_unbox=TRUE,pretty=TRUE)

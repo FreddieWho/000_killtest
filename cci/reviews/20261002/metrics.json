@@ -1,0 +1,106 @@
+{
+  "scope": "Frozen-input audit, not independent biological validation",
+  "ic": {
+    "CellChat": {
+      "n_programs": 797,
+      "heldout_donor_R2": 0.7356080009878615,
+      "per_donor_R2": {
+        "patient_1015": 0.6818539989724035,
+        "patient_1016": 0.599498923575803,
+        "patient_101": 0.7542529671990273,
+        "patient_1039": 0.8349800259451011,
+        "patient_107": 0.8344878196341429,
+        "patient_1244": 0.6673327726791372,
+        "patient_1256": 0.6428330111944558,
+        "patient_1488": 0.6869920806645078
+      },
+      "rounded_prediction_exact_accuracy": 0.397741530740276,
+      "MAE": 0.9173251290030329,
+      "pair_centered_R2_descriptive": 0.7066919462328176,
+      "within_pair_fraction_of_variance": 0.34562411898447437,
+      "centering_note": "Post-hoc pooled pair means: descriptive decomposition only, not a newly fitted or independently validated model."
+    },
+    "LIANA_CellPhoneDB": {
+      "n_programs": 750,
+      "heldout_donor_R2": 0.9184815532423759,
+      "per_donor_R2": {
+        "patient_1015": 0.8987350724611116,
+        "patient_1016": 0.9345185314072141,
+        "patient_101": 0.9401833650624493,
+        "patient_1039": 0.8918604869397347,
+        "patient_107": 0.9036057217136185,
+        "patient_1244": 0.9271416744035543,
+        "patient_1256": 0.9186425243330959,
+        "patient_1488": 0.9325508384058703
+      },
+      "rounded_prediction_exact_accuracy": 0.428,
+      "MAE": 0.7385649606684419,
+      "pair_centered_R2_descriptive": 0.7694593096896525,
+      "within_pair_fraction_of_variance": 0.25046756660807107,
+      "centering_note": "Post-hoc pooled pair means: descriptive decomposition only, not a newly fitted or independently validated model."
+    }
+  },
+  "simple_graph_audit": {
+    "checked": 1628,
+    "mismatched_size_or_certificate": 0
+  },
+  "null_table_means": {
+    "pooled_full": {
+      "paired_sample_t": {
+        "FPR": 0.016883457887295446,
+        "FDP": 0.01
+      },
+      "pooled_cell_condition_permutation": {
+        "FPR": 0.15913956776408802,
+        "FDP": 0.28
+      },
+      "pooled_cell_delta": {
+        "FPR": 0.11023227630781657,
+        "FDP": 1.0
+      }
+    },
+    "prototype": {
+      "CellChat_paired_product": {
+        "FPR": 0.015934414333767317,
+        "FDP": 0.0078125
+      },
+      "CellChat_paired_product_exact_signflip": {
+        "FPR": 0.014880710177951348,
+        "FDP": 0.0
+      },
+      "LIANA_CellPhoneDB_paired_product": {
+        "FPR": 0.01575177484787013,
+        "FDP": 0.0078125
+      },
+      "LIANA_CellPhoneDB_paired_product_exact_signflip": {
+        "FPR": 0.014554086153517616,
+        "FDP": 0.0
+      }
+    },
+    "native_python_analysis_01": {
+      "CellPhoneDB": {
+        "FPR": 0.031479826029620565,
+        "FDP": 0.0390625
+      },
+      "FastCCC": {
+        "FPR": 0.031479826029620565,
+        "FDP": 0.0390625
+      },
+      "LIANA": {
+        "FPR": 0.045583545918367295,
+        "FDP": 0.0546875
+      }
+    },
+    "native_CellChat_analysis_01": {
+      "CellChat": {
+        "FPR": 0.016068241026630594,
+        "FDP": 0.0078125
+      }
+    }
+  },
+  "exact_p_rounding_changed_entries": 0,
+  "prototype_injection": {
+    "n_targets": 921,
+    "zero_SD_targets": 0
+  }
+}

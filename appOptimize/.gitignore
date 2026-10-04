@@ -1,0 +1,14 @@
+.cache/
+.envs/
+data/
+sources/
+benchmarks/B_dmel/
+benchmarks/B_rice/
+benchmarks/D_*/
+benchmarks/A_*/
+benchmarks/C_*/
+profiles/profiler_tools/
+profiles/**/*.trace
+profiles/**/*.data
+profiles/**/*.svg
+profiles/*.log

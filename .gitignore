@@ -1,0 +1,21 @@
+# 大体积数据与运行产物：不入库
+data/
+benchmarks/
+profiles/
+recovery/
+appOptimize/sources/
+cci/results/
+
+# 环境、缓存、工具状态
+.cache/
+.envs/
+.deps/
+.pi/
+__pycache__/
+*.pyc
+*.log
+*.lock
+
+# 杂项
+.ipynb_checkpoints/
+.DS_Store
